@@ -12,10 +12,21 @@ class NeuralNetwork:
         self.num_layers = len(layer_sizes)
 
         # Initialize weights and biases
-        # Weights: He initialization or Xavier initialization is generally better,
-        # but for simplicity we'll use small random numbers.
+        # Using He initialization for better gradient flow
+        #
+        # For each layer connection:
+        #   x = number of neurons in the INPUT layer (fan-in)
+        #   y = number of neurons in the OUTPUT layer (fan-out)
+        #   Weight matrix shape: (y, x) - each row connects to one output neuron
+        #
+        # He init: multiply by sqrt(2 / x) where x is the input size
+        # This scaling prevents vanishing/exploding gradients
+        #
+        # Example for [784, 100, 10] network:
+        #   Layer 0->1: x=784, y=100, weights shape (100, 784), scale=sqrt(2/784)≈0.050
+        #   Layer 1->2: x=100, y=10,  weights shape (10, 100),  scale=sqrt(2/100)≈0.141
         self.weights = [
-            np.random.randn(y, x) * 0.01
+            np.random.randn(y, x) * np.sqrt(2.0 / x)
             for x, y in zip(layer_sizes[:-1], layer_sizes[1:])
         ]
         self.biases = [np.zeros((y, 1)) for y in layer_sizes[1:]]

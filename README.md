@@ -4,7 +4,7 @@ MNIST handwritten digits dataset recognition using neural network from scratch.
 
 ## Result 
 
-![Result](image.png)
+![Result](result.png)
 
 ## Model Architecture
 
