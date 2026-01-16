@@ -25,5 +25,5 @@ MNIST handwritten digits dataset recognition using neural network from scratch.
 
 ## Accuracy
 
-- Training accuracy: 97.61%
-- Test accuracy: 97.61%
+- Training accuracy: 99.20%
+- Test accuracy: 97.80%
